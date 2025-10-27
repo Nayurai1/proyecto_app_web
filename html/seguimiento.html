@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento - ULEAM</title>
+    <link rel="stylesheet" href="../css/seguimiento.css">
+</head>
+<body>
+    <div class="seguimiento-container">
+        
+        <h1 class="page-title">Seguimiento • ULEAM</h1>
+
+        <div class="main-grid">
+            
+            <div class="ficha-sidebar">
+                
+                <h2 class="section-title">Ficha</h2>
+
+                <div class="ficha-datos">
+                    <p><strong>Nombre:</strong> <span id="ficha-nombre">Villon Pico Francisco</span></p>
+                    <p><strong>Cédula:</strong> <span id="ficha-cedula">1312411569</span></p>
+                    <p><strong>Tipo:</strong> <span id="ficha-tipo">Visual - 30%</span></p>
+                    <p><strong>Facultad:</strong> <span id="ficha-facultad">TIC</span></p>
+                </div>
+
+                <h2 class="section-title responsables">Responsables directivos</h2>
+                
+                <form id="asignacion-form">
+                    <div class="input-group">
+                        <select class="asignacion-select" id="selectTutor">
+                            <option>Asignar tutor</option>
+                            <option value="Tutor_A">Tutor A</option>
+                            <option value="Tutor_B">Tutor B</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <select class="asignacion-select" id="selectDocente">
+                            <option>Asignar Docente</option>
+                            <option value="Docente_X">Docente X</option>
+                            <option value="Docente_Y">Docente Y</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <select class="asignacion-select" id="selectCoordinador">
+                            <option>Asignar Coordinador</option>
+                            <option value="Coord_P">Coordinador P</option>
+                            <option value="Coord_Q">Coordinador Q</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-asignar">Asignar</button>
+                </form>
+            </div>
+
+            <div class="historial-main">
+                <h2 class="section-title">Historial de seguimiento</h2>
+                
+                <ul class="historial-list" id="historialList">
+                    <li class="historial-item">
+                        <div class="item-header">
+                            <span class="item-date-role">05 Oct 2025 • Tutor</span>
+                            <div class="item-actions">
+                                <button class="btn-icon btn-edit" title="Editar">✏️</button>
+                                <button class="btn-icon btn-delete" title="Eliminar">🗑️</button>
+                            </div>
+                        </div>
+                        <p class="item-detalle">Evaluación inicial. Plan de apoyo creado.</p>
+                    </li>
+                    
+                    <li class="historial-item">
+                        <div class="item-header">
+                            <span class="item-date-role">20 Oct 2025 • Coordinador</span>
+                            <div class="item-actions">
+                                <button class="btn-icon btn-edit" title="Editar">✏️</button>
+                                <button class="btn-icon btn-delete" title="Eliminar">🗑️</button>
+                            </div>
+                        </div>
+                        <p class="item-detalle">Entrevista con el tutor y ajustes de horarios.</p>
+                    </li>
+                    
+                    <li class="historial-item">
+                        <div class="item-header">
+                            <span class="item-date-role">01 Nov 2025 • Docente</span>
+                            <div class="item-actions">
+                                <button class="btn-icon btn-edit" title="Editar">✏️</button>
+                                <button class="btn-icon btn-delete" title="Eliminar">🗑️</button>
+                            </div>
+                        </div>
+                        <p class="item-detalle">Entrega de material adaptado y seguimiento académico.</p>
+                    </li>
+                </ul>
+
+                <div class="agregar-seguimiento">
+                    <div class="input-group">
+                        <select class="input-tipo-rol" id="selectRol">
+                            <option value="">Tipo (Tutor/Docente/Coordinador)</option>
+                            <option value="Tutor">Tutor</option>
+                            <option value="Docente">Docente</option>
+                            <option value="Coordinador">Coordinador</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-row">
+                        <div class="input-group input-group-grow">
+                            <textarea placeholder="Seguimiento del estudiante" id="detalleSeguimiento"></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <input type="date" id="fechaActividad">
+                        </div>
+                    </div>
+                    
+                    <button class="btn-agregar" id="btnAgregarSeguimiento">Agregar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="../js/seguimiento.js"></script>
+</body>
+</html>

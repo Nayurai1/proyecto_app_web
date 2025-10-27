@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - ULEAM</title>
+    <link rel="stylesheet" href="../css/usuarios.css">
+</head>
+<body>
+    <div class="users-container">
+        
+        <h1 class="page-title">Administración de Usuarios</h1>
+
+        <div class="main-grid">
+            
+            <div class="add-user-card">
+                <h2 class="section-title">Agregar nuevo usuario</h2>
+                
+                <form id="new-user-form">
+                    <input type="text" id="nombreUsuario" placeholder="Agregar Nombre">
+                    <input type="text" id="apellidoUsuario" placeholder="Agregar Apellido">
+                    <input type="email" id="correoUsuario" placeholder="Correo">
+                    <input type="text" id="loginUsuario" placeholder="Usuario (Login)">
+                    <input type="password" id="contrasena" placeholder="Contraseña">
+                    
+                    <select id="rolUsuario">
+                        <option value="Administrador">Administrador</option>
+                        <option value="Usuario">Usuario</option>
+                        <option value="Tutor">Tutor</option>
+                        <option value="Docente">Docente</option>
+                        <option value="Coordinador">Coordinador</option>
+                    </select>
+
+                    <button type="submit" class="btn-create-user">Crear Usuario</button>
+                </form>
+            </div>
+
+            <div class="list-users-card">
+                <h2 class="section-title">Lista de usuarios</h2>
+                
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Usuario">admin01</td>
+                            <td data-label="Nombre">Isaac Arturo</td>
+                            <td data-label="Correo">e1346385039@uleam.edu.ec</td>
+                            <td data-label="Rol">Administrador</td>
+                            <td data-label="Estado">Activo</td>
+                            <td data-label="Acciones" class="actions-cell">
+                                <button class="btn-icon btn-edit" title="Editar">✏️</button>
+                                <button class="btn-icon btn-delete" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="Usuario">admin02</td>
+                            <td data-label="Nombre">Melanie Carolina</td>
+                            <td data-label="Correo">e1317910139@uleam.edu.ec</td>
+                            <td data-label="Rol">Administrador</td>
+                            <td data-label="Estado">Activo</td>
+                            <td data-label="Acciones" class="actions-cell">
+                                <button class="btn-icon btn-edit" title="Editar">✏️</button>
+                                <button class="btn-icon btn-delete" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="Usuario">User01</td>
+                            <td data-label="Nombre">Francisco Villon</td>
+                            <td data-label="Correo">e1336780384@uleam.edu.ec</td>
+                            <td data-label="Rol">Usuario</td>
+                            <td data-label="Estado">Activo</td>
+                            <td data-label="Acciones" class="actions-cell">
+                                <button class="btn-icon btn-edit" title="Editar">✏️</button>
+                                <button class="btn-icon btn-delete" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="../js/usuarios.js"></script> 
+</body>
+</html>
+    </body>
+</html>

@@ -1,0 +1,263 @@
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc; /* Fondo claro general */
+    padding: 30px;
+}
+
+.page-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.seguimiento-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr; 
+    gap: 30px;
+}
+
+/*ESTILOS DE CAJAS PRINCIPALES (Ficha e Historial)*/
+
+.ficha-sidebar, .historial-main {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+    font-size: 24px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/*COLUMNA IZQUIERDA: FICHA Y ASIGNACIONES*/
+
+.ficha-datos p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.ficha-datos strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.responsables {
+    margin-top: 30px;
+}
+
+.asignacion-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #3a579d; 
+    font-weight: 500;
+}
+
+.btn-asignar {
+    width: 100%;
+    padding: 12px;
+    background-color: #a6b8ff; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.btn-asignar:hover {
+    background-color: #8da6ff;
+}
+
+/*COLUMNA DERECHA: HISTORIAL*/
+
+.historial-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.historial-item {
+    border-left: 3px solid #e0e6ed; 
+    padding: 10px 0 10px 20px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.historial-item:before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 15px;
+    width: 10px;
+    height: 10px;
+    background-color: #3a579d; 
+    border-radius: 50%;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-date-role {
+    font-weight: 700;
+    color: #333;
+    font-size: 16px;
+}
+
+.item-detalle {
+    margin: 5px 0 0;
+    color: #555;
+    font-size: 15px;
+}
+
+/*ESTILOS DE BOTONES DE ACCIÓN (Editar/Eliminar)*/
+
+.btn-icon {
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    padding: 5px 8px; 
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 15px; 
+    background-color: transparent; 
+    transition: all 0.2s; 
+    box-shadow: none; 
+    transform: none;
+}
+
+/* Color para el botón Editar (Azul institucional) */
+.btn-edit {
+    color: #3a579d; 
+    border-color: #a6b8ff;
+}
+.btn-edit:hover {
+    background-color: #e0e6ed; 
+    color: #3a579d;
+}
+
+/* Color para el botón Eliminar (Rojo institucional) */
+.btn-delete {
+    color: #c2185b; 
+    border-color: #ffcdd2; 
+}
+.btn-delete:hover {
+    background-color: #fff1f2; 
+}
+
+
+/*SECCIÓN AGREGAR SEGUIMIENTO*/
+
+.agregar-seguimiento {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e6ed;
+}
+
+/* NUEVOS ESTILOS PARA LA ESTRUCTURA DE ERRORES */
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+.input-group-grow {
+    flex-grow: 1; 
+}
+
+.input-tipo-rol {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #333;
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start; 
+}
+
+.agregar-seguimiento textarea {
+    width: 100%; /* El 100% de su contenedor (input-group-grow) */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    resize: vertical;
+    min-height: 80px;
+    box-sizing: border-box;
+}
+
+/* ESTILOS DE CAMPO DE FECHA */
+#fechaActividad {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    font-size: 15px;
+    height: 40px; 
+    cursor: pointer;
+    box-shadow: none; 
+    transition: border-color 0.2s;
+    background-color: white;
+    color: #333;
+}
+
+/* ESTILOS DE BOTÓN 'AGREGAR' */
+.btn-agregar {
+    padding: 10px 25px; 
+    background-color: #a6b8ff;
+    color: white;
+    border: none;
+    border-radius: 8px; 
+    font-weight: 600; 
+    cursor: pointer;
+    box-shadow: none; 
+    transition: background-color 0.3s;
+    float: right;
+    margin-top: 15px;
+}
+
+.btn-agregar:hover {
+    background-color: #8da6ff;
+}
+
+/*ESTILOS DE VALIDACIÓN*/
+
+.input-error {
+    border-color: #ff4d4f !important;
+}
+
+.error-message {
+    color: #ff4d4f;
+    font-size: 13px;
+    margin-top: 5px; 
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+/* Media Query para responsividad */
+@media (max-width: 800px) {
+    .main-grid {
+        grid-template-columns: 1fr; 
+    }
+}
