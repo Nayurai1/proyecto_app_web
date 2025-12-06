@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #f9f9fb, #d8ecff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 850px;
+  animation: fadeIn 1s ease;
+}
+
+.login-box {
+  flex: 1;
+  padding: 50px;
+}
+
+h2 {
+  color: #444;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #70b8ff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(112,184,255,0.3);
+}
+
+.btn {
+  background: #70b8ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #5aa9f0;
+  transform: translateY(-2px);
+}
+
+.links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.links a {
+  color: #5aa9f0;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.illustration {
+  flex: 1;
+  background: #e3f2ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.illustration img {
+  width: 80%;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}

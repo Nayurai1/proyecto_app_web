@@ -1,0 +1,142 @@
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc; /* Fondo claro de la página */
+    padding: 30px;
+    min-height: 100vh;
+}
+
+/* --- GRID PRINCIPAL DE DOS COLUMNAS --- */
+.main-reporte-grid {
+    display: grid;
+    /* Divide la pantalla en una columna para filtros (250px) y el resto para resultados */
+    grid-template-columns: 280px 1fr; 
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/*COLUMNA DE FILTROS*/
+.filtro-sidebar {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    align-self: flex-start; /* Evita que se estire verticalmente más de lo necesario */
+}
+
+.sidebar-title {
+    font-size: 20px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+#filtroForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* Estilo general para inputs y selects */
+input[type="text"], input[type="number"], select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+/*BOTÓN APLICAR FILTROS (Rosa de la imagen)*/
+.btn-aplicar {
+    background-color: #f7d2e3; 
+    color: #c2185b;
+    border: 1px solid #c2185b; 
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.btn-aplicar:hover {
+    background-color: #c2185b;
+    color: white;
+}
+
+
+/*COLUMNA DE RESULTADOS*/
+.reporte-resultados {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.reporte-resultados h2 {
+    font-size: 24px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- TABLA DE DATOS (DATA-TABLE) --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Encabezado de la tabla (Color rosa de la imagen) */
+.data-table thead tr {
+    background-color: #fce4ec; /* Fondo rosa/morado claro */
+    color: #c2185b;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Filas del cuerpo */
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody td {
+    color: #555;
+}
+
+/* --- ESTILOS DE VALIDACIÓN (Para JS) --- */
+.input-error {
+    border-color: #ff4d4f !important;
+}
+
+.error-message {
+    color: #ff4d4f;
+    font-size: 13px;
+    margin-top: 5px; 
+    font-weight: 600;
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .main-reporte-grid {
+        grid-template-columns: 1fr; /* Columna única en móviles */
+    }
+}

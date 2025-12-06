@@ -1,0 +1,172 @@
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc; /* Fondo blanco/gris claro */
+    color: #333;
+}
+
+/* --- ENCABEZADO Y NAVEGACIÓN --- */
+
+.main-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    margin-right: 40px;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #555;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilo para el ítem "Inicio" activo */
+.nav-menu li a.active {
+    background-color: #fce4ec; 
+    color: #c2185b; 
+    font-weight: 600;
+}
+
+.nav-menu li a:hover:not(.active) {
+    background-color: #f0f2f5;
+}
+
+/*CONTENEDOR PRINCIPAL DEL DASHBOARD*/
+
+.dashboard-container {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/*1. GRID DE TARJETAS DE ESTADÍSTICAS*/
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.card-value {
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+}
+
+/*GRID INFERIOR (Logo y Actividad)*/
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 3fr; 
+    gap: 20px;
+    align-items: stretch; /* Estirar ambas cajas a la misma altura */
+}
+
+.logo-box, .activity-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+}
+
+.logo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 25px;
+}
+
+.logo-box img {
+    max-width: 100%; 
+    height: auto;
+}
+
+
+.activity-box {
+    padding: 25px 30px;
+}
+
+.activity-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.activity-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.activity-box li {
+    padding: 8px 0;
+    font-size: 15px;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.activity-box li:last-child {
+    border-bottom: none;
+}
+
+.activity-name {
+    font-weight: 600;
+    color: #3a579d;
+}
+
+.activity-time {
+    color: #777;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/*Media Queries para Responsividad*/
+
+@media (max-width: 900px) {
+    .stats-grid {
+        grid-template-columns: 1fr; /* Apilar las tarjetas en una sola columna */
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr; /* Apilar las cajas inferiores */
+    }
+}

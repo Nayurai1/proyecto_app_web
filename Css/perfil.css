@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(180deg, #fbfdff, #f5f9ff);
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 28px;
+}
+
+.brand {
+    font-weight: 800;
+}
+
+.brand .tag {
+    background: #ffdbe6;
+    color: #5b1f2b;
+    padding: 6px 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    font-weight: 700;
+}
+
+.link {
+    color: #45617a;
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+.profile-wrap {
+    display: flex;
+    gap: 18px;
+    padding: 20px 28px;
+}
+
+.card {
+    background: #fff;
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(18, 40, 80, 0.05);
+}
+
+.muted {
+    color: #6b7280;
+}
+
+.side {
+    width: 300px;
+    text-align: center;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 20px rgba(18, 40, 80, 0.06);
+}
+
+.contact {
+    margin-top: 10px;
+    text-align: left;
+    padding-left: 18px;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 12px 0;
+}
+
+.badge {
+    background: #e6f7ff;
+    color: #05607a;
+    padding: 6px 10px;
+    border-radius: 999px; 
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.main {
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+    /* Dos columnas para información */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.supports {
+    list-style: disc;
+    margin-left: 18px;
+    color: #2b3b44;
+}
+
+.mini {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+}
+
+.mini th, .mini td {
+    padding: 8px;
+    border: 1px solid #eef6ff;
+    text-align: left;
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.primary {
+    background: #bfe9ff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.secondary {
+    background: #fff;
+    border: 1px solid #e6eefc;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.footer {
+    padding: 16px 28px;
+    text-align: center;
+    color: #7b8794;
+}

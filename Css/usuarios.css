@@ -1,0 +1,167 @@
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    padding: 30px;
+}
+
+.page-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.users-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr; 
+    gap: 30px;
+}
+
+/*ESTILOS DE TARJETAS (Cajas Blancas)*/
+
+.add-user-card, .list-users-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+    font-size: 24px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* --- COLUMNA AGREGAR USUARIO (Izquierda) --- */
+
+/* Estilos de inputs y selectores */
+#new-user-form input[type="text"],
+#new-user-form input[type="email"],
+#new-user-form input[type="password"],
+#new-user-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px; /* Espacio normal entre inputs */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+#new-user-form input.input-error,
+#new-user-form select.input-error {
+    margin-bottom: 5px; /* Reduce el margen inferior cuando hay error */
+}
+
+.btn-create-user {
+    width: 100%;
+    padding: 12px;
+    background-color: #a6b8ff; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.btn-create-user:hover {
+    background-color: #8da6ff;
+}
+
+/* --- ESTILOS DE VALIDACIÓN --- */
+
+.input-error {
+    border-color: #ff4d4f !important;
+}
+
+.error-message {
+    color: #ff4d4f;
+    font-size: 13px;
+    margin-top: 2px; 
+    margin-bottom: 15px; /* Espacio después del mensaje de error */
+    font-weight: 600;
+}
+
+
+/* --- COLUMNA LISTA DE USUARIOS (Derecha) --- */
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.users-table th {
+    background-color: #f0f4f8; 
+    color: #3a579d;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid #e0e6ed;
+}
+
+.users-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e6ed;
+    color: #555;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.users-table tbody tr:hover {
+    background-color: #f7f9fc;
+}
+
+/* Estilos para los botones de acción */
+
+.actions-cell {
+    white-space: nowrap; 
+}
+
+.btn-icon {
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    padding: 5px 8px; 
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 14px; 
+    background-color: transparent; 
+    transition: all 0.2s; 
+    box-shadow: none; 
+}
+
+/* Color para el botón Editar */
+.btn-edit {
+    color: #3a579d; 
+    border-color: #a6b8ff;
+}
+.btn-edit:hover {
+    background-color: #e0e6ed; 
+}
+
+/* Color para el botón Eliminar */
+.btn-delete {
+    color: #c2185b; 
+    border-color: #ffcdd2; 
+}
+.btn-delete:hover {
+    background-color: #fff1f2; 
+}
+
+/* Media Query para responsividad */
+@media (max-width: 800px) {
+    .main-grid {
+        grid-template-columns: 1fr; 
+    }
+}
