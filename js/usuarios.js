@@ -1,4 +1,121 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+// -----------------------------------------------------------------
+    //  PASO 1: SIMULACIÓN DEL JSON DE DATOS (Lista de usuarios)
+    // -----------------------------------------------------------------
+    const dataUsuarios = [
+        {
+usuario: "isaac01",
+            nombre: "Isaac",
+            apellido: "Arturo",
+            correo: "isaac.arturo@uleam.edu.ec",
+            rol: "Administrador",
+            estado: "Activo"
+        },
+        {
+            usuario: "melanieC",
+            nombre: "Melanie",
+            apellido: "Carolina",
+            correo: "melanie.c@uleam.edu.ec",
+            rol: "Administrador",
+            estado: "Activo"
+        },
+        {
+            usuario: "francoV",
+            nombre: "Francisco",
+            apellido: "Villon",
+            correo: "francisco.v@uleam.edu.ec",
+            rol: "Usuario",
+            estado: "Activo"
+        },
+        {
+            usuario: "carlaG",
+            nombre: "Carla",
+            apellido: "Gómez",
+            correo: "carla.gomez@uleam.edu.ec",
+            rol: "Tutor",
+            estado: "Activo"
+        },
+        
+        // --- 6 USUARIOS NUEVOS ---
+        {
+            usuario: "anaM",
+            nombre: "Ana",
+            apellido: "Mendoza",
+            correo: "ana.mendoza@uleam.edu.ec",
+            rol: "Docente",
+            estado: "Activo"
+        },
+        {
+            usuario: "pedroR",
+            nombre: "Pedro",
+            apellido: "Ramirez",
+            correo: "pedro.ramirez@uleam.edu.ec",
+            rol: "Tutor",
+            estado: "Activo"
+        },
+        {
+            usuario: "javiS",
+            nombre: "Javier",
+            apellido: "Saltos",
+            correo: "javier.saltos@uleam.edu.ec",
+            rol: "Coordinador",
+            estado: "Activo"
+        },
+        {
+            usuario: "luisaP",
+            nombre: "Luisa",
+            apellido: "Párraga",
+            correo: "luisa.parraga@uleam.edu.ec",
+            rol: "Docente",
+            estado: "Inactivo" // Usuario inactivo
+        },
+        {
+            usuario: "robertoA",
+            nombre: "Roberto",
+            apellido: "Aguirre",
+            correo: "roberto.aguirre@uleam.edu.ec",
+            rol: "Usuario",
+            estado: "Activo"
+        },
+        {
+            usuario: "eliV",
+            nombre: "Eliana",
+            apellido: "Vargas",
+            correo: "eliana.vargas@uleam.edu.ec",
+            rol: "Coordinador",
+            estado: "Activo"
+        }
+    ];
+        // ¡Puedes agregar 100 usuarios más aquí
+
+    // -----------------------------------------------------------------
+    //  PASO 2: PINTAR LOS DATOS EN LA TABLA
+    // -----------------------------------------------------------------
+    const tablaBody = document.getElementById('users-table-body');
+    
+    if (tablaBody) {
+        dataUsuarios.forEach(usuario => {
+            // Crea la fila <tr>
+            const fila = document.createElement('tr');
+            
+            // Llena el HTML interno con los datos del JSON
+            fila.innerHTML = `
+                <td data-label="Usuario">${usuario.usuario}</td>
+                <td data-label="Nombre">${usuario.nombre}</td>
+                <td data-label="Correo">${usuario.correo}</td>
+                <td data-label="Rol">${usuario.rol}</td>
+                <td data-label="Estado">${usuario.estado}</td>
+                <td data-label="Acciones" class="actions-cell">
+                    <button class="btn-icon btn-edit" title="Editar">✏️</button>
+                    <button class="btn-icon btn-delete" title="Eliminar">🗑️</button>
+                </td>
+            `;
+            // Agrega la fila al <tbody>
+            tablaBody.appendChild(fila);
+        });
+    }
+
     const form = document.getElementById('new-user-form');
     
     // Selectores de campos

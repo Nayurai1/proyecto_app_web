@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,6 +38,76 @@ body {
     margin-top: 0;
     margin-bottom: 20px;
 }
+
+/* --- INICIO: ESTILOS AÑADIDOS PARA EL BUSCADOR DE ESTUDIANTES (Estilizado) --- */
+
+/* Contenedor principal del buscador */
+.search-box-integrated {
+    margin-bottom: 20px;
+}
+
+/* Estilo para el label del buscador: más visible y estético */
+.search-box-integrated label {
+    display: block;
+    font-weight: 700; /* Más énfasis, consistente con el diseño */
+    color: #333;
+    margin-bottom: 8px; 
+    font-size: 16px;
+}
+
+.search-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: stretch; /* Asegura que el input y el botón tengan la misma altura */
+}
+
+.search-input-group input[type="text"] {
+    /* Estilo del campo de texto de búsqueda */
+    padding: 12px 15px; /* Aumentado ligeramente para mejor estética */
+    border: 1px solid #ddd;
+    border-radius: 10px; 
+    font-size: 16px; 
+    box-sizing: border-box;
+    width: 100%; 
+}
+
+.search-input-group input[type="text"]:focus {
+    /* Mejora en el foco (utilizando azul institucional oscuro) */
+    border-color: #3a579d; 
+    outline: none;
+    box-shadow: 0 0 5px rgba(58, 87, 157, 0.4); 
+}
+
+.btn-buscar {
+    /* Estilo del botón de búsqueda (azul institucional oscuro para contraste) */
+    background-color: #3a579d; /* Color utilizado en los círculos del historial */
+    color: white;
+    border: none;
+    border-radius: 10px; 
+    padding: 0 18px; 
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    flex-shrink: 0;
+    height: 44px; /* Altura forzada para coincidir con el input */
+    line-height: 44px; 
+    box-sizing: border-box;
+}
+
+.btn-buscar:hover {
+    background-color: #5577c9; /* Tono de hover elegante */
+}
+
+/* Separador visual para dividir el buscador de la ficha */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: #e0e6ed; 
+    margin: 10px 0 20px 0;
+}
+/* --- FIN: ESTILOS AÑADIDOS PARA EL BUSCADOR DE ESTUDIANTES (Estilizado) --- */
+
 
 /*COLUMNA IZQUIERDA: FICHA Y ASIGNACIONES*/
 
