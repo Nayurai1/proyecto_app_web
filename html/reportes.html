@@ -3,55 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reportes - ULEAM</title>
-    <link rel="stylesheet" href="../css/reportes.css">
+    <title>Reporte de Discapacidad Estudiantil</title>
+
+    <link rel="stylesheet" href="../Css/reportes.css"> 
 </head>
 <body>
+    
     <div class="main-reporte-grid">
-        
         <div class="filtro-sidebar">
-            <h2 class="sidebar-title">Filtros</h2>
+            <h3 class="sidebar-title">Filtros</h3>
             <form id="filtroForm">
-                
                 <div class="filter-group">
                     <label for="filtroNombre">Nombre</label>
-                    <input type="text" id="filtroNombre" placeholder="">
+                    <input type="text" id="filtroNombre" name="nombre" placeholder="">
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filtroEdad">Edad</label>
-                    <input type="number" id="filtroEdad" min="1" placeholder="">
+                    <input type="text" id="filtroEdad" name="edad" placeholder="">
                 </div>
 
                 <div class="filter-group">
                     <label for="filtroFacultad">Facultad</label>
-                    <select id="filtroFacultad">
+                    <select id="filtroFacultad" name="facultad">
                         <option value="Todos">Todos</option>
-                        <option value="TIC">TIC</option>
-                        <option value="Salud">Salud</option>
-                        <option value="Educacion">Educación</option>
                     </select>
                 </div>
 
                 <div class="filter-group">
                     <label for="filtroTipoDiscapacidad">Tipo de discapacidad</label>
-                    <select id="filtroTipoDiscapacidad">
+                    <select id="filtroTipoDiscapacidad" name="tipoDiscapacidad">
                         <option value="Todos">Todos</option>
-                        <option value="Visual">Visual</option>
-                        <option value="Motora">Motora</option>
-                        <option value="Auditiva">Auditiva</option>
                     </select>
                 </div>
-                
-                <div class="filter-group">
-                    <label for="filtroPorcentaje">Porcentaje discapacidad</label>
-                    <select id="filtroPorcentaje">
-                        <option value="Todos">Todos</option>
-                        <option value="25">0% - 25%</option>
-                        <option value="45">26% - 50%</option>
-                        <option value="45">51% - 75</option>
-                        <option value="45">76% - 100%</option>
 
+                <div class="filter-group">
+                    <label for="filtroPorcentajeDiscapacidad">Porcentaje discapacidad</label>
+                    <select id="filtroPorcentajeDiscapacidad" name="porcentajeDiscapacidad">
+                        <option value="Todos">Todos</option>
                     </select>
                 </div>
 
@@ -61,7 +50,6 @@
 
         <div class="reporte-resultados">
             <h2>Resultados</h2>
-            
             <table class="data-table">
                 <thead>
                     <tr>
@@ -73,35 +61,12 @@
                         <th>Estado</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Juan Perez</td>
-                        <td>Visual</td>
-                        <td>TIC</td>
-                        <td>20</td>
-                        <td>En seguimiento</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Maria Torres</td>
-                        <td>Motora</td>
-                        <td>Salud</td>
-                        <td>24</td>
-                        <td>Finalizado</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Andrés Ruiz</td>
-                        <td>Auditiva</td>
-                        <td>Educación</td>
-                        <td>28</td>
-                        <td>En seguimiento</td>
-                    </tr>
-                </tbody>
+                <tbody id="tablaCuerpo">
+                    </tbody>
             </table>
         </div>
     </div>
-    <script src="../js/reportes.js  "></script>
+    
+    <script src="../js/reportes.js"></script>
 </body>
 </html>

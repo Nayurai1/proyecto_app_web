@@ -1,68 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Perfil - ULEAM Inclusiva</title>
-  <link rel="stylesheet" href="../css/perfil.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Perfil - ULEAM Inclusiva</title>
+    <link rel="stylesheet" href="../css/perfil.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">ULEAM <span class="tag">Inclusiva</span></div>
-    <div class="actions">
+    <header class="topbar">
+        <div class="brand">ULEAM <span class="tag">Inclusiva</span></div>
+        <div class="actions">
+            </div>
+    </header>
+
+    <div class="main-wrapper">
+        
+        <div class="search-container card">
+            <h2 class="search-title">Buscar Estudiante por Cédula o Nombre</h2>
+            <div class="input-group search-group">
+                <input type="text" id="inputBuscarCedula" placeholder="Ej: Villon Pico Francisco o 1312411569">
+                <button id="btnBuscarPerfil" class="btn-buscar-seguimiento">
+                    🔍 Buscar
+                </button>
+            </div>
+            <div id="mensajeBusqueda" class="mensaje-busqueda"></div> 
+        </div>
+
+        <div class="profile-wrap" id="perfilDataContainer" style="display: none;"> 
+            
+            <aside class="card side">
+                <img class="avatar" id="perfil-avatar" src="../img/user.png" alt="foto_perfil">
+                <h2 id="perfil-nombre">---</h2>
+                <p class="muted"><span id="perfil-rol">Estudiante</span> · <span id="perfil-carrera">---</span></p>
+
+                <div class="badges" id="perfil-badges">
+                    <span class="badge" id="badge-discapacidad">N/A</span>
+                    <span class="badge" id="badge-percent">0%</span>
+                    <span class="badge" id="badge-tutor">Sin Tutor</span>
+                </div>
+
+                <div class="contact">
+                    <h4>Contacto</h4>
+                    <p>📧 <span id="perfil-email">---</span></p>
+                    <p>📞 <span id="perfil-telefono">---</span></p>
+                    <p>Cédula: <span id="perfil-cedula">---</span></p>
+                </div>
+            </aside>
+
+            <section class="card main">
+                
+                <h3>Detalles Personales</h3>
+                <div class="grid">
+                    <div><strong>Identificación</strong><p id="detalle-identificacion">---</p></div>
+                    <div><strong>Edad</strong><p id="detalle-edad">---</p></div>
+                    <div><strong>Género</strong><p id="detalle-genero">---</p></div>
+                    <div><strong>Dirección</strong><p id="detalle-direccion">---</p></div>
+                </div>
+
+                <h3>Requerimientos y apoyos</h3>
+                <ul class="supports" id="lista-apoyos">
+                    <li><small class="muted">Buscando datos...</small></li>
+                </ul>
+
+                <h3>Historial académico (resumido)</h3>
+                <table class="mini">
+                    <thead>
+                        <tr><th>Semestre</th><th>GPA</th><th>Observación</th></tr>
+                    </thead>
+                    <tbody id="tabla-historial-academico">
+                        <tr><td colspan="3"><small class="muted">Buscando datos...</small></td></tr>
+                    </tbody>
+                </table>
+
+                <div class="buttons">
+                    <button class="primary">Editar Perfil</button>
+                    <button class="secondary">Generar Certificado</button>
+                </div>
+            </section>
+        </div>
+        
+        <div class="placeholder-text" id="perfilPlaceholder">
+            Use la barra de búsqueda para cargar el perfil del estudiante.
+        </div>
     </div>
-  </header>
 
-  <main class="profile-wrap">
-    <aside class="card side">
-      <img class="avatar" src="../img/user.png" alt="foto_perfil">
-      <h2>María López</h2>
-      <p class="muted">Estudiante · Ingeniería en Software</p>
+    <footer class="footer">© 2025 ULEAM · Perfil</footer>
 
-      <div class="badges">
-        <span class="badge">Visual</span>
-        <span class="badge">Percent: 65%</span>
-        <span class="badge">Tutor asignado</span>
-      </div>
-
-      <div class="contact">
-        <h4>Contacto</h4>
-        <p>📧 maria.lopez@uleam.edu.ec</p>
-        <p>📞 0958903481</p>
-      </div>
-    </aside>
-
-    <section class="card main">
-      <h3>Detalles del perfil</h3>
-
-      <div class="grid">
-        <div><strong>Identificación</strong><p>1712345678</p></div>
-        <div><strong>Edad</strong><p>22</p></div>
-        <div><strong>Género</strong><p>Femenino</p></div>
-        <div><strong>Dirección</strong><p>Av. Universitaria, Manta</p></div>
-      </div>
-
-      <h3>Requerimientos y apoyos</h3>
-      <ul class="supports">
-        <li>Material ampliado</li>
-        <li>Tutoría semanal</li>
-        <li>Acceso preferencial a exámenes</li>
-      </ul>
-
-      <h3>Historial académico (resumido)</h3>
-      <table class="mini">
-        <tr><th>Semestre</th><th>GPA</th><th>Observación</th></tr>
-        <tr><td>2024-1</td><td>8.7</td><td>Estable</td></tr>
-        <tr><td>2024-2</td><td>9.0</td><td>Mejora</td></tr>
-      </table>
-
-      <div class="buttons">
-        <button class="primary">Agregar</button>
-        <button class="secondary">Generar certificado</button>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">© 2025 ULEAM · Perfil</footer>
+    <script src="../js/perfil.js"></script>
 </body>
 </html>

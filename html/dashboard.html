@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - ULEAM</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+</head>
 <body>
     <header class="main-header">
         <h1 class="logo">Uleam</h1>
         <nav class="nav-menu">
             <ul>
-                <li><a href="#" class="active">Inicio</a></li>
-                <li><a href="#">Registro</a></li>
-                <li><a href="#">Perfil</a></li>
-                <li><a href="#">Seguimiento</a></li>
-                <li><a href="#">Reportes</a></li>
-                <li><a href="#">Usuarios</a></li>
+                <li><a href="dashboard.html" class="active">Inicio</a></li>
+                <li><a href="registro.html">Registro</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="seguimiento.html">Seguimiento</a></li>
+                <li><a href="reportes.html">Reportes</a></li>
+                <li><a href="usuarios.html">Usuarios</a></li>
             </ul>
         </nav>
     </header>
@@ -26,37 +27,60 @@
             
             <div class="card">
                 <span class="card-title">Total Registrados</span>
-                <span class="card-value">124</span>
+                <span class="card-value" id="kpi-total-registrados">0</span> 
             </div>
 
             <div class="card">
                 <span class="card-title">Casos activos</span>
-                <span class="card-value">54</span>
+                <span class="card-value" id="kpi-casos-activos">0</span> 
             </div>
 
             <div class="card">
                 <span class="card-title">Reportes generados</span>
-                <span class="card-value">33</span>
+                <span class="card-value" id="kpi-reportes-generados">0</span> 
+            </div>
+            
+            <div class="card">
+                <span class="card-title">Casos críticos</span>
+                <span class="card-value" id="kpi-casos-criticos">0</span> 
             </div>
 
         </div>
 
-        <div class="bottom-grid">
+        <div class="bottom-main-grid"> 
             
-            <div class="logo-box">
-                <img src="../img/logo-box.png" alt="Logo de la Universidad Laica Eloy Alfaro de Manabí">
+            <div class="left-column">
+                
+                <div class="card insights-card faculty-card">
+                    <span class="card-title">Facultad Con Más Casos</span>
+                    <span class="card-value faculty-value" id="summary-facultad-top">N/A</span>
+                </div>
+
+                <div class="logo-box">
+                    <img src="../img/logo-box.png" alt="Logo de la Universidad Laica Eloy Alfaro de Manabí"> 
+                </div>
             </div>
 
-            <div class="activity-box">
-                <h3 class="activity-title">Actividad Reciente</h3>
-                <ul>
-                    <li><span class="activity-name">Villon pico Francisco</span> - <span class="activity-time">Registrado 4h</span></li>
-                    <li><span class="activity-name">Valencia lady Milena</span> - <span class="activity-time">Registrado 2h</span></li>
-                    <li><span class="activity-name">Saltos Zambrano Vicente</span> - <span class="activity-time">Registrado 1h</span></li>
-                </ul>
+
+            <div class="right-column">
+                
+                <div class="card insights-card roles-card">
+                    <span class="card-title">Responsables académicos más activos</span>
+                    <p>Tutor - <strong id="summary-tutor-activo">N/A</strong></p>
+                    <p>Coordinador - <strong id="summary-coordinador-activo">N/A</strong></p>
+                    <p>Docente - <strong id="summary-docente-activo">N/A</strong></p>
+                </div>
+
+                <div class="card activity-box">
+                    <span class="card-title">Actividad Reciente</span>
+                    <ul id="actividad-reciente-list">
+                    </ul>
+                </div>
             </div>
             
         </div>
     </div>
+    
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>
