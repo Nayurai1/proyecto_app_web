@@ -1,10 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- NUEVO ARRAY JSON PARA EL HISTORIAL ---
+    // --- NUEVO ARRAY JSON PARA EL HISTORIAL (Añadida la clave 'cedulaEstudiante') ---
     let historialDB = [
-        { id: 1, fecha: '2025-10-20', rol: 'Tutor', detalle: 'Revisión del avance académico y apoyo docente. ¿Acuerdos? Pendientes.' },
-        { id: 2, fecha: '2025-09-15', rol: 'Docente', detalle: 'Entrega de material adaptado y seguimiento adaptado en la docente de Matemáticas.' }
+        { id: 1, cedulaEstudiante: '1312411569', fecha: '2025-10-20', rol: 'Tutor', detalle: 'Revisión del avance académico y apoyo docente. ¿Acuerdos? Pendientes.' },
+        { id: 2, cedulaEstudiante: '1312411569', fecha: '2025-09-15', rol: 'Docente', detalle: 'Entrega de material adaptado y seguimiento adaptado en la docente de Matemáticas.' },
+        // Añadiré un registro para otro estudiante para poder probar el filtrado.
+        { id: 3, cedulaEstudiante: '0987654321', fecha: '2025-11-01', rol: 'Coordinador', detalle: 'Reunión inicial de adaptación para el uso de silla de ruedas.' }
     ];
+
+    // --- VARIABLE GLOBAL PARA SABER QUÉ ESTUDIANTE ESTÁ ACTIVO ---
+    // Inicialmente, se asume el que está cargado en la ficha por defecto.
+    let cedulaEstudianteActual = '1312411569'; 
 
     // --- SELECTORES EXISTENTES ---
     const formAsignacion = document.getElementById('asignacion-form');
@@ -25,17 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const fichaTipo = document.getElementById('ficha-tipo');
     const fichaFacultad = document.getElementById('ficha-facultad');
 
-    // --- NUEVO SELECTOR DE LISTA DE HISTORIAL ---
+    // --- SELECTOR DE LISTA DE HISTORIAL ---
     const historialList = document.getElementById('historialList');
 
     const estudiantesDB = [
         { cedula: '1312411569', nombre: 'Villon Pico Francisco', tipo: 'Visual - 30%', facultad: 'TIC', estado: 'activo' },
         { cedula: '0987654321', nombre: 'Gómez Torres Ana', tipo: 'Motora - 65%', facultad: 'Salud', estado: 'activo' },
-        { cedula: '1710101010', nombre: 'Ruiz Saltos Juan', tipo: 'Auditiva - 40%', facultad: 'Educación', estado: 'inactivo' }
+        { cedula: '1710101010', nombre: 'Ruiz Saltos Juan', tipo: 'Auditiva - 40%', facultad: 'Educación', estado: 'inactivo' },
+        { cedula: '0502030405', nombre: 'Pérez Silva María', tipo: 'Dislexia - 25%', facultad: 'Comunicación', estado: 'activo' },
+        { cedula: '2425262728', nombre: 'López Mero Carlos', tipo: 'TDAH - 50%', facultad: 'Ingeniería', estado: 'activo' },
+        { cedula: '1011121314', nombre: 'Vargas Solís Elena', tipo: 'Sordera - 70%', facultad: 'Derecho', estado: 'inactivo' }
     ];
 
     
-    // --- LÓGICA DE LA COLUMNA IZQUIERDA: ASIGNAR ---
+    // --- LÓGICA DE LA COLUMNA IZQUIERDA: ASIGNAR (omitiendo por brevedad) ---
     
     formAsignacion.addEventListener('submit', (e) => {
         e.preventDefault(); 
@@ -66,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- LÓGICA DE BÚSQUEDA DE ESTUDIANTE (VALIDACIÓN ESTRICTA: SOLO CÉDULA DE 10 DÍGITOS) ---
+    // --- LÓGICA DE BÚSQUEDA DE ESTUDIANTE (ACTUALIZA LA CÉDULA ACTUAL) ---
     
     btnBuscar.addEventListener('click', (e) => {
         e.preventDefault(); 
@@ -75,10 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const busqueda = inputBuscar.value.trim();
         let esValido = true;
         
-        // Patrón para verificar que SÓLO sean exactamente 10 dígitos numéricos
         const cedulaPattern = /^\d{10}$/; 
 
-        // 1. Validación de Cédula (debe ser 10 dígitos y solo números)
         if (!cedulaPattern.test(busqueda)) {
             mostrarError(inputBuscar, 'La Cédula debe contener exactamente 10 dígitos numéricos.');
             esValido = false;
@@ -89,18 +96,25 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Si es válido, se procede a buscar solo por Cédula (búsqueda exacta)
         const estudianteEncontrado = estudiantesDB.find(est => 
             est.cedula === busqueda
         );
 
         if (estudianteEncontrado) {
+            // *** CAMBIO CLAVE 1: Actualizar la cédula del estudiante activo ***
+            cedulaEstudianteActual = estudianteEncontrado.cedula; 
+            
             actualizarFicha(estudianteEncontrado);
+            mostrarHistorial(); // *** CAMBIO CLAVE 2: Refrescar el historial con el nuevo filtro ***
+
             inputBuscar.value = ''; 
-            console.log(`✅ Estudiante encontrado: ${estudianteEncontrado.nombre}`);
+            console.log(`✅ Estudiante encontrado: ${estudianteEncontrado.nombre}. Historial actualizado.`);
         } else {
             mostrarError(inputBuscar, 'Estudiante no encontrado. Verifique la Cédula.');
             limpiarFicha();
+            // Si no se encuentra, la ficha se limpia y el historial se vacía
+            cedulaEstudianteActual = ''; 
+            mostrarHistorial(); 
             inputBuscar.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     });
@@ -116,6 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
         limpiarErrores();
         let esValido = true;
         
+        // ** NUEVA VALIDACIÓN: Debe haber un estudiante seleccionado antes de agregar seguimiento **
+        if (cedulaEstudianteActual.length === 0) {
+            mostrarError(selectRol, '❌ Primero debe buscar y seleccionar un estudiante.');
+            document.getElementById('buscarEstudiante').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return; 
+        }
+
         // 1. Validar Rol (Verifica el valor nulo del placeholder)
         if (selectRol.value === "") {
             mostrarError(selectRol, 'Seleccione el rol desde donde realiza el seguimiento.');
@@ -136,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const fechaSeleccionada = new Date(fechaActividad.value);
             const hoy = new Date();
             
-            // Ajustar ambas fechas a medianoche (00:00:00) para comparar solo las fechas
             hoy.setHours(0, 0, 0, 0); 
             fechaSeleccionada.setHours(0, 0, 0, 0); 
 
@@ -147,16 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (esValido) {
-            // --- NUEVA LÓGICA: CREAR Y AGREGAR SEGUIMIENTO AL JSON ---
+            // --- LÓGICA: CREAR Y AGREGAR SEGUIMIENTO AL JSON ---
             const nuevoSeguimiento = {
-                // Generar un ID simple, asumiendo que el historialDB tiene el registro más alto al final.
                 id: historialDB.length > 0 ? historialDB[historialDB.length - 1].id + 1 : 1, 
-                fecha: fechaActividad.value, // YYYY-MM-DD
+                // *** CAMBIO CLAVE 3: Asignar la cédula del estudiante actual al nuevo registro ***
+                cedulaEstudiante: cedulaEstudianteActual, 
+                fecha: fechaActividad.value, 
                 rol: selectRol.value, 
                 detalle: detalleSeguimiento.value.trim()
             };
 
-            historialDB.push(nuevoSeguimiento); // Añadir el nuevo registro
+            historialDB.push(nuevoSeguimiento); 
             mostrarHistorial(); // Refrescar el DOM
 
             // Limpiar el formulario
@@ -169,16 +190,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- FUNCIÓN PARA GENERAR Y MOSTRAR EL HISTORIAL DESDE EL JSON (NUEVA FUNCIÓN) ---
+    // --- FUNCIÓN PARA GENERAR Y MOSTRAR EL HISTORIAL DESDE EL JSON (AHORA CON FILTRADO) ---
     function mostrarHistorial() {
         historialList.innerHTML = ''; // Limpiar el contenedor antes de renderizar
         
-        // Iterar sobre el historial en orden inverso (más reciente primero)
-        [...historialDB].reverse().forEach(item => {
+        // *** CAMBIO CLAVE 4: Filtrar el historial por la cédula activa ***
+        const historialFiltrado = historialDB.filter(item => 
+            item.cedulaEstudiante === cedulaEstudianteActual
+        );
+
+        if (historialFiltrado.length === 0 && cedulaEstudianteActual.length > 0) {
+             historialList.innerHTML = '<li class="historial-empty">Este estudiante no tiene registros de seguimiento aún.</li>';
+             return;
+        }
+        
+        // Iterar sobre el historial filtrado en orden inverso (más reciente primero)
+        [...historialFiltrado].reverse().forEach(item => {
             const li = document.createElement('li');
             li.className = 'historial-item';
             
-            // Usar la fecha y rol del objeto JSON
             li.innerHTML = `
                 <div class="item-header">
                     <span class="item-date-role">${item.fecha} • ${item.rol}</span>
@@ -194,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- FUNCIONES DE FICHA ---
+    // --- FUNCIONES DE FICHA (omitiendo por brevedad) ---
 
     function actualizarFicha(data) {
         fichaNombre.textContent = data.nombre;
@@ -210,8 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fichaFacultad.textContent = '---';
     }
 
-
-    // --- FUNCIONES DE FEEDBACK (Generales) ---
+    // ... (resto de funciones de feedback)
 
     function mostrarError(elemento, mensaje) {
         limpiarErrorUnico(elemento);
@@ -238,5 +267,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- INICIALIZACIÓN ---
-    mostrarHistorial(); // Cargar y mostrar los datos iniciales al cargar la página.
+    mostrarHistorial(); // Cargar el historial inicial del estudiante por defecto.
 });
