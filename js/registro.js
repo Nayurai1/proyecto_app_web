@@ -1,67 +1,135 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
     
-    // 1. SELECTORES: Mapeo de todos los inputs del formulario
+    // --- 1. CATÁLOGOS XML INTEGRADOS (Como String) ---
+    // Esto reemplaza el archivo externo registro.xml y evita problemas de ruta.
+    const xmlCatalogoString = `
+<CatalogosRegistro>
+    <Lista id="Facultades">
+        <Item valor="TIC">Facultad de Ciencias Informáticas</Item>
+        <Item valor="Salud">Facultad de Ciencias de la Salud</Item>
+        <Item valor="Educacion">Facultad de Ciencias de la Educación</Item>
+        <Item valor="Ambientales">Facultad de Ciencias Ambientales</Item>
+        <Item valor="Derecho">Facultad de Derecho</Item>
+    </Lista>
+    
+    <Lista id="TiposDiscapacidad">
+        <Item valor="Visual">Visual</Item>
+        <Item valor="Auditiva">Auditiva</Item>
+        <Item valor="Motora">Motora</Item>
+        <Item valor="Intelectual">Intelectual</Item>
+        <Item valor="Psicosocial">Psicosocial</Item>
+        <Item valor="Otra">Otra</Item>
+    </Lista>
+
+    <Lista id="Generos">
+        <Item valor="F">Femenino</Item>
+        <Item valor="M">Masculino</Item>
+        <Item valor="O">Otro</Item>
+    </Lista>
+</CatalogosRegistro>
+    `;
+
+
+    // --- 2. SELECTORES DE ELEMENTOS ---
+    const form = document.getElementById('registroForm');
+    
+    // Selectores para la población
+    const selectGenero = document.getElementById('regGenero');
+    const selectFacultad = document.getElementById('regFacultad');
+    const selectTipoDiscapacidad = document.getElementById('regTipoDiscapacidad');
+    
+    // Mapeo de todos los inputs para la validación
     const inputs = {
-        // Datos Personales
-        nombre: document.querySelector('input[placeholder="Primer nombre"]'),
-        apellido: document.querySelector('input[placeholder="Primer apellido"]'),
-        cedula: document.querySelector('input[placeholder="Número de identificación"]'),
-        fechaNacimiento: document.querySelector('input[type="date"]'),
-        genero: document.querySelector('select:nth-of-type(1)'),
+        nombre: document.getElementById('regNombre'),
+        apellido: document.getElementById('regApellido'),
+        cedula: document.getElementById('regCedula'),
+        fechaNacimiento: document.getElementById('regFechaNacimiento'),
+        genero: selectGenero, 
         
-        // Credenciales de Acceso
-        usuario: document.getElementById('inputUsuario'), // ID del campo de usuario
-        password: document.getElementById('inputPassword'), // ID del campo de contraseña
+        usuario: document.getElementById('inputUsuario'), 
+        password: document.getElementById('inputPassword'), 
         
-        // Contacto
-        celular: document.querySelector('input[type="tel"]'),
-        correo: document.querySelector('input[type="email"]'),
-        direccion: document.querySelector('input[placeholder="Av. Principal, Ciudad"]'),
+        celular: document.getElementById('regCelular'),
+        correo: document.getElementById('regCorreo'),
+        direccion: document.getElementById('regDireccion'),
         
-        // Académico y Discapacidad
-        facultad: document.querySelector('select:nth-of-type(2)'),
-        tipoDiscapacidad: document.querySelector('select:nth-of-type(3)'),
-        porcentaje: document.querySelector('input[type="number"][min="0"][max="100"]'),
-        observaciones: document.querySelector('textarea')
+        facultad: selectFacultad,
+        tipoDiscapacidad: selectTipoDiscapacidad, 
+        porcentaje: document.getElementById('regPorcentaje'),
+        observaciones: document.getElementById('regObservaciones')
     };
 
-    // 2. FUNCIÓN PRINCIPAL DE VALIDACIÓN
+    // --- 3. LÓGICA DE POBLACIÓN XML (Usa DOMParser en la cadena) ---
+    cargarDatosConfiguracionXML(xmlCatalogoString);
+    
+    function cargarDatosConfiguracionXML(xmlString) {
+        try {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+
+            // Poblar selectores
+            poblarSelectoresDesdeXML(xmlDoc, 'Facultades', selectFacultad);
+            poblarSelectoresDesdeXML(xmlDoc, 'TiposDiscapacidad', selectTipoDiscapacidad);
+            poblarSelectoresDesdeXML(xmlDoc, 'Generos', selectGenero); 
+
+        } catch (error) {
+            console.error("Error al procesar el XML string integrado:", error);
+        }
+    }
+    
+    function poblarSelectoresDesdeXML(xmlDoc, listaId, selectElement) {
+        const listaXML = xmlDoc.querySelector(`Lista[id="${listaId}"]`);
+
+        if (listaXML) {
+            const items = listaXML.querySelectorAll('Item');
+            
+            items.forEach(item => {
+                const valor = item.getAttribute('valor');
+                const texto = item.textContent;
+                
+                const option = document.createElement('option');
+                option.value = valor;
+                option.textContent = texto;
+                selectElement.appendChild(option);
+            });
+        }
+    }
+
+
+    // --- 4. FUNCIÓN PRINCIPAL DE VALIDACIÓN (Su lógica original) ---
     form.addEventListener('submit', (e) => {
         e.preventDefault(); 
         
         limpiarErrores();
         let esValido = true;
         
-        // --- BUENA PRÁCTICA: VALIDACIÓN EN BUCLE ---
+        // --- VALIDACIÓN EN BUCLE ---
 
         for (const key in inputs) {
             const input = inputs[key];
+            
+            if (!input) continue;
+
             const valor = input.value.trim();
 
-            // A. OBLIGATORIO (Todos los campos son obligatorios)
-            if (valor === '' || valor === 'Selecciona...') {
-                mostrarError(input, 'Este campo es obligatorio.');
-                esValido = false;
-                continue; 
+            // A. OBLIGATORIO (Usando 'Selecciona...' como valor vacío de select)
+            const noRequeridos = ['direccion', 'observaciones']; 
+
+            if (!noRequeridos.includes(key)) {
+                if (valor === '' || valor === 'Selecciona...') {
+                    mostrarError(input, 'Este campo es obligatorio.');
+                    esValido = false;
+                    continue; 
+                }
+            } else if (valor === '') {
+                 continue;
             }
 
+            // --- VALIDACIONES ESPECÍFICAS (Su lógica) ---
             
             // CÉDULA (10 dígitos)
             if (key === 'cedula' && (valor.length !== 10 || !/^\d{10}$/.test(valor))) {
                 mostrarError(input, 'La cédula debe tener exactamente 10 dígitos y solo números.');
-                esValido = false;
-            }
-            
-            // USUARIO (5-10 caracteres)
-            if (key === 'usuario' && (valor.length < 5 || valor.length > 10)) {
-                mostrarError(input, 'El usuario debe tener entre 5 y 10 caracteres.');
-                esValido = false;
-            }
-
-            // CONTRASEÑA (Mínimo 8 caracteres)
-            if (key === 'password' && valor.length < 8) {
-                mostrarError(input, 'La contraseña debe tener al menos 8 caracteres.');
                 esValido = false;
             }
             
@@ -78,20 +146,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 esValido = false;
             }
             
-            // FECHA DE NACIMIENTO (Mayor de 18 años)
-            if (key === 'fechaNacimiento') {
-                const fechaNac = new Date(valor);
-                const hoy = new Date();
-                // Cálculo simple de edad (aproximado)
-                const edadAnios = (hoy - fechaNac) / (1000 * 60 * 60 * 24 * 365.25); 
-
-                if (edadAnios < 16) {
-                    
-                    mostrarError(input, 'La persona debe ser mayor de 18 años.');
-                    esValido = false;
-                }
+            // USUARIO (5-10 caracteres)
+            if (key === 'usuario' && (valor.length < 5 || valor.length > 10)) {
+                mostrarError(input, 'El usuario debe tener entre 5 y 10 caracteres.');
+                esValido = false;
             }
 
+            // CONTRASEÑA (Mínimo 8 caracteres)
+            if (key === 'password' && valor.length < 8) {
+                mostrarError(input, 'La contraseña debe tener al menos 8 caracteres.');
+                esValido = false;
+            }
+            
+            // FECHA DE NACIMIENTO (Mayor de 16 años)
+            if (key === 'fechaNacimiento') {
+                const valorFecha = input.value;
+                if(valorFecha) {
+                    const fechaNac = new Date(valorFecha);
+                    const hoy = new Date();
+                    const edadAnios = (hoy - fechaNac) / (1000 * 60 * 60 * 24 * 365.25); 
+
+                    if (edadAnios < 16) {
+                        mostrarError(input, 'La persona debe ser mayor de 16 años.');
+                        esValido = false;
+                    }
+                }
+            }
+            
             // PORCENTAJE (Entre 0 y 100)
             if (key === 'porcentaje') {
                 const numValor = parseInt(valor, 10);
@@ -100,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     esValido = false;
                 }
             }
-
         } 
 
 
@@ -108,12 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (esValido) {
             alert('✅ Registro exitoso. ¡Validaciones superadas!');
         } else {
-       
             document.querySelector('.input-error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     });
 
-    // --- FUNCIONES DE FEEDBACK (Necesarias) ---
+    // --- FUNCIONES DE FEEDBACK (Mantenidas) ---
     
     function mostrarError(elemento, mensaje) {
         if (elemento.nextElementSibling && elemento.nextElementSibling.classList.contains('error-message')) {

@@ -1,87 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro - ULEAM Inclusiva</title>
-  <link rel="stylesheet" href="../css/registro.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - ULEAM Inclusiva</title>
+  <link rel="stylesheet" href="../css/registro.css">
 </head>
 <body>
-  <div class="container">
-    <div class="form-box">
-      <h2>Registro</h2>
-      <p class="subtitle">Completa la información básica y de la discapacidad</p>
+  <div class="container">
+    <div class="form-box">
+      <h2>Registro</h2>
+      <p class="subtitle">Completa la información básica y de la discapacidad</p>
 
-      <form>
-        <div class="group">
-         <h3>Datos Personales</h3>
-         <label>Nombre</label>
-         <input type="text" placeholder="Primer nombre">        
-         <label>Apellido</label>
-         <input type="text" placeholder="Primer apellido">
-                
-         <label>Cédula</label>
-         <input type="text" placeholder="Número de identificación">     
-         <label>Fecha de Nacimiento</label>
-         <input type="date">    
-         <label>Género</label>
-         <select>
-          <option value="">Selecciona...</option>
-           <option>Femenino</option>
-           <option>Masculino</option>
-           <option>Otro</option>
-         </select>
-        </div>
+      <form id="registroForm"> 
+        <div class="group">
+         <h3>Datos Personales</h3>
+         <label>Nombre</label>
+         <input type="text" placeholder="Primer nombre" id="regNombre">        
+         <label>Apellido</label>
+         <input type="text" placeholder="Primer apellido" id="regApellido">
+                
+         <label>Cédula</label>
+         <input type="text" placeholder="Número de identificación" id="regCedula">     
+         <label>Fecha de Nacimiento</label>
+         <input type="date" id="regFechaNacimiento">    
+         <label>Género</label>
+                  <select id="regGenero">
+          <option value="">Selecciona...</option>
+         </select>
+        </div>
 
-        <div class="group">
-          <h3>Credenciales de Acceso</h3>
-          
-          <label>Nombre de Usuario</label>
-          <input type="text" placeholder="Mínimo 5 y máximo 10 caracteres" id="inputUsuario" maxlength="10">       
-          <label>Contraseña</label>
-          <input type="password" placeholder="Mínimo 8 caracteres" id="inputPassword">
-          
-                  </div>
-        
-        <div class="group">
-          <h3>Contacto y Discapacidad</h3>       
-          <label>Celular</label>
-          <input type="tel" placeholder="Ej: 0991234567">       
-          <label>Correo Electrónico</label>
-          <input type="email" placeholder="ejemplo@uleam.edu.ec">       
-          <label>Dirección</label>
-          <input type="text" placeholder="Av. Principal, Ciudad">
-        </div>       
-        <div class="group">
-          <h3>Académico y Discapacidad</h3>       
-          <label>Facultad</label>
-          <select>
-            <option value="">Selecciona...</option>
-            <option>TIC (Tecnologías de la Información)</option>
-            <option>Software</option>
-          </select>       
-          <label>Tipo de Discapacidad</label>
-          <select>
-            <option value="">Selecciona...</option>
-            <option>Visual</option>
-            <option>Auditiva</option>
-            <option>Motora</option>
-            <option>Intelectual</option>
-            <option>Otra</option>
-          </select>       
-          <label>Porcentaje de Discapacidad (%)</label>
-          <input type="number" min="0" max="100" placeholder="Ej: 45">
-        </div>
-        
-        <div class="full-width">
-          <label>Observaciones Adicionales</label>
-          <textarea placeholder="Requerimientos de apoyo o notas importantes"></textarea>
-        </div>       
-        <button type="submit" class="btn">Registrar</button>
-      </form>
-    </div>
-    
-  </div>
-  <script src="../js/registro.js"></script> 
+        <div class="group">
+          <h3>Credenciales de Acceso</h3>
+          
+          <label>Nombre de Usuario</label>
+          <input type="text" placeholder="Mínimo 5 y máximo 10 caracteres" id="inputUsuario" maxlength="10">       
+          <label>Contraseña</label>
+          <input type="password" placeholder="Mínimo 8 caracteres" id="inputPassword">
+          
+                  </div>
+        
+        <div class="group">
+          <h3>Contacto y Discapacidad</h3>       
+          <label>Celular</label>
+          <input type="tel" placeholder="Ej: 0991234567" id="regCelular">       
+          <label>Correo Electrónico</label>
+          <input type="email" placeholder="ejemplo@uleam.edu.ec" id="regCorreo">       
+          <label>Dirección</label>
+          <input type="text" placeholder="Av. Principal, Ciudad" id="regDireccion">
+        </div>       
+        <div class="group">
+          <h3>Académico y Discapacidad</h3>       
+          <label>Facultad</label>
+                    <select id="regFacultad">
+            <option value="">Selecciona...</option>
+          </select>       
+          <label>Tipo de Discapacidad</label>
+                    <select id="regTipoDiscapacidad">
+            <option value="">Selecciona...</option>
+          </select> 
+          <label>Porcentaje de Discapacidad (%)</label>
+          <input type="number" min="0" max="100" placeholder="Ej: 45" id="regPorcentaje">
+        </div>
+        
+        <div class="full-width">
+          <label>Observaciones Adicionales</label>
+          <textarea placeholder="Requerimientos de apoyo o notas importantes" id="regObservaciones"></textarea>
+        </div> 
+        <button type="submit" class="btn">Registrar</button>
+      </form>
+    </div>
+    
+  </div>
+  <script src="../js/registro.js"></script> 
 </body>
 </html>

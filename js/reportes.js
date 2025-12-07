@@ -3,7 +3,7 @@ const datosEstudiantes = [
     { ID: 1, Nombre: "Juan Perez", Tipo: "Visual", Facultad: "TIC", Edad: 20, Estado: "En seguimiento" },
     { ID: 2, Nombre: "Maria Torres", Tipo: "Motora", Facultad: "Salud", Edad: 24, Estado: "Finalizado" },
     { ID: 3, Nombre: "Andrés Ruiz", Tipo: "Auditiva", Facultad: "Educación", Edad: 28, Estado: "En seguimiento" },
-    { ID: 4, Nombre: "Andrés Villón", Tipo: "Motora", Facultad: "Educación", Edad: 23, Estado: "En seguimiento" },
+    { ID: 4, Nombre: "Andrés Villón", Tipo: "Motora", Facultad: "Educación", Edad: 32, Estado: "En seguimiento" },
     { ID: 5, Nombre: "Carla Núñez", Tipo: "Visual", Facultad: "Salud", Edad: 22, Estado: "En seguimiento" },
     { ID: 6, Nombre: "Pedro Gómez", Tipo: "Motora", Facultad: "TIC", Edad: 35, Estado: "Finalizado" },
 ];
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Al inicio, la tabla se renderiza vacía para que no se muestre nada.
     renderizarTabla([]); 
     
-    // Rellenar dinámicamente los selects (opcional, pero útil)
+    // Rellenar dinámicamente los selects 
     rellenarSelects();
 
 
